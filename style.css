@@ -336,6 +336,27 @@ should work without it but w/e*/
     padding-bottom: 1%;
     margin-top: 1em;
 }
+#qrcontainer
+{
+    text-align: center;
+    position: absolute;
+    margin-left: 2vw;
+}
+#qrcontainer p
+{
+    margin-top: -10px;
+    background-color: white;
+    font-size: 17px;
+}
+#qrbutton
+{
+    position: absolute;
+    width: 10%;
+    padding: 8px;
+    font-size: 15px;
+    margin-left: 2vw;
+    display: none;
+}
 /*rwd stuff. mostly just moving certain elements around so the website looks nice*/
 @media (max-width: 800px)
 {
@@ -374,4 +395,5 @@ should work without it but w/e*/
         width: 650px;
         height: 650px;
     }
+    #qrcontainer {display: none;}
 }

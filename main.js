@@ -21,6 +21,8 @@ let score = 0;
 let scoreelement = document.getElementById("score");
 let submit = document.querySelector("#submitbutton");
 let comment = document.getElementById("comment");
+let qrcode = document.querySelector("#qrcontainer");
+let qrbutton = document.querySelector("#qrbutton");
 
 // for rwd purposes. clientwidth gets the viewport width. i think. thats what stack overflow said
 // either way it works fine for rwd :thumbsup:
@@ -257,5 +259,17 @@ for (let card of cards)
 
 //button that when clicked reads the value in the select
 submit.addEventListener("click", readvalue);
+
+//when qrcode is clicked hide qrcode and show button
+qrcode.addEventListener("click", function () {
+    qrcode.style.display = "none";
+    qrbutton.style.display = "block";
+});
+
+//when button clicked hide qr code
+qrbutton.addEventListener("click", function () {
+    qrbutton.style.display = "none";
+    qrcode.style.display = "block";
+});
 
 hideall();
