@@ -1,0 +1,397 @@
+/*bg image for the website. scroll anchored
+or at least it's supposed to be scroll anchored?
+it doesnt work on mobile
+apparently this is a known bug*/
+@font-face {
+    font-family: 'VCR OSD Mono';
+    src: url('fonts/VCR_OSD_MONO_1.001.ttf'); 
+}
+html 
+{
+    background-image: url("images/gonger.webp");
+    background-size: cover;
+    background-attachment: fixed;
+}
+body 
+{
+    width: 100%;
+    height: fit-content;
+    padding: 0;
+    margin: 0;
+    padding-top: 20px;
+}
+/*both margins and width are adjusted for rwd so the thing doesnt squish itself
+into the side on a thinner screen*/
+header
+{
+    text-align: center;
+    margin-top: 10vh;
+    margin-left: 50vw;
+    width: 32%;
+}
+header>img {width: 70%;}
+/*same for the left margin here, adjusted for rwd later on*/
+nav
+{
+    font-family: 'VCR OSD Mono';
+    font-size: 200%;
+    background-color: pink;
+    margin-left: 50vw;
+    margin-top: 2vh;
+    width: 32%;
+    border: 4px solid palevioletred;
+    border-radius: 25px;
+    padding-left: 20px;
+}
+/*css for the second nav. that ones a flexbox for convenience purposes*/
+#inpagenav
+{
+    display: flex;
+    width:95%;
+    margin: 0 auto;
+    margin-top: 1vh;
+}
+nav>h2
+{
+    text-align: center;
+    margin-left: -15px;
+}
+button
+{
+    width: 95%;
+    font-size: 70%;
+    background-color: plum;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-bottom: 4%;
+    border: none;
+    border-radius: 25px;
+    transition-duration: 0.4s;
+}
+/*change color when hovered over over a short duration*/
+button:hover {
+  background-color: #9404aa; 
+  color: white;
+}
+/*hides in page nav on boot. shown when pages r shown*/
+#inpagenav {display: none;}
+#inpagenav>button
+{
+    width: 100%;
+    flex: 1;
+    padding: 0;
+    margin: 0;
+    margin-right: 2vw;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+ul
+{
+    padding-left: 0;
+    list-style: none;
+}
+main
+{
+    font-size: 20px;
+    display: none;
+    margin-top: 4vh;
+    margin-left: 3%;
+    margin-right: 3%;
+    background-color: pink;
+    padding: 2%;
+    border: 4px solid palevioletred;
+    border-radius: 25px;
+    line-height: 140%;
+}
+.odd
+{
+    text-align: left;
+    width:40%;
+}
+.even
+{
+    text-align: right;
+    width:40%;
+    margin-left: 53vw;
+}
+/*flexbox jumpscare because i wanted to center stuff*/
+figure, figcaption
+{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding-top: 1vh;
+}
+figcaption
+{
+    font-size: 0.9em;
+    font-style: italic;
+}
+figure>img
+{
+    width:50%;
+    flex:100%; 
+}
+/*changed box sizing for formatting purposes*/
+#memorygame
+{
+    padding: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
+    height: 75vh;
+    background-color: blanchedalmond;
+    margin-top: 5vh;
+    width: 750px;
+    height: 900px;
+    border: 4px solid palevioletred;
+    border-radius: 25px;
+    background-color: pink;
+    text-align: center;
+}
+#memorygame>h2 {font-size: 2em;}
+#memorygame>p {font-size: 1.2em;}
+#spacing {height: 12%;}
+/*perspective is used for 3d space so that the cards can have a flip animation in 3d space*/
+#memgamecontainer
+{
+    width: 550px;
+    height: 550px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    margin-top: 30px;
+    perspective: 1000px;
+}
+/*behold! spritesheet!*/
+.firstcard 
+{
+    background: url('images/spritesheet.webp') no-repeat -85px -9px;
+	width: 102px;
+	height: 141px;
+}
+.secondcard
+{
+    background: url('images/spritesheet.webp') no-repeat -196px -6px;
+	width: 116px;
+	height: 142px;
+}
+.thirdcard
+{
+    background: url('images/spritesheet.webp') no-repeat -332px -10px;
+	width: 92px;
+	height: 136px;
+}
+.fourthcard
+{
+    background: url('images/spritesheet.webp') no-repeat -20px -163px;
+	width: 101px;
+	height: 135px;
+}
+.fifthcard
+{
+    background: url('images/spritesheet.webp') no-repeat -135px -161px;
+	width: 87px;
+	height: 134px;
+}
+.sixthcard
+{
+    background: url('images/spritesheet.webp') no-repeat -246px -158px;
+	width: 72px;
+	height: 132px;
+}
+/*transform style preserve 3d for aforementioned flip animation*/
+.memorycard
+{
+    width: calc(25% - 10px);
+    height: calc(33% - 10px);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: aliceblue;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition-duration: .5s;
+}
+/*when clicked, the card responds by becoming a little smaller*/
+.memorycard:active
+{
+    transform: scale(.97);
+    transition-duration: 0.1s;
+}
+/*when flipped the thing is rotated about the y axis by 180deg*/
+.memorycard.flip {transform: rotateY(180deg);}
+/*hide backface so we can actually see the stuff on the other side of the card. or we'll just be seeing the back of the default back*/
+.frontface, .backface
+{
+    position: absolute;
+    top: 50%;
+    margin-top: -3.5em;
+    backface-visibility: hidden;
+}
+/*rotate front face around so that the backface isnt facing the back when the card is flipped*/
+.frontface {transform: rotateY(180deg);}
+.backface
+{
+    background: url('images/spritesheet.webp') no-repeat -10px -9px;
+	width: 67px;
+	height: 52px;
+    margin-top: -2.5em;
+}
+/*due to some issues with the image bc of their transparent bg i just put a pure white divider between the two images*/
+.divider
+{
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: aliceblue;
+    backface-visibility: hidden;
+}
+/*animation that makes the squishies move around*/
+@keyframes anim
+{
+    0% 
+    {
+        left: 0px;
+        top: 0px;
+    }
+    25%
+    {
+        left: 100px;
+        top: 0px;
+    }
+    50%
+    {
+        left: 100px;
+        top: 100px;
+    }
+    75%
+    {
+        left: 0px;
+        top: 100px;
+    }
+    100%
+    {
+        left: 0px;
+        top: 0px;
+    }
+}
+/*keyframes for the actual squishing animation*/
+@keyframes squishanim 
+{
+    0% {transform: scaleY(100%);}
+    50% {transform: scaleY(30%);}
+    100% {transform: scaleY(100%);}
+}
+/*loops the moving animation forever. also position absolute to make things easier for me*/
+#suletta, #miorine, #guel, #chuchu, #nika, #elan
+{
+    margin-left: 60vw;
+    margin-top: 70vh;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    animation-name: anim;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+#miorine {margin-top: 180vh;}
+#guel
+{
+    margin-top: 260vh;
+    margin-left: 20vw;
+}
+#chuchu {margin-top: 360vh;}
+#nika
+{
+    margin-top: 520vh;
+    margin-left: 20vw;
+}
+#elan {margin-top: 640vh;}
+/*height auto was just a just in case thing so javascript doesnt yell at me for not having height
+should work without it but w/e*/
+.squishable {height: auto;}
+/*when squished play the squished anim*/
+.squished
+{
+    animation-name: squishanim;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+#submitbutton
+{
+    display: block;
+    font-size: 1em;
+    border-radius: 5px;
+    width: 15%;
+    margin: 0 auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-top: 1em;
+}
+#qrcontainer
+{
+    text-align: center;
+    position: absolute;
+    margin-left: 2vw;
+}
+#qrcontainer p
+{
+    margin-top: -10px;
+    background-color: white;
+    font-size: 17px;
+}
+#qrbutton
+{
+    position: absolute;
+    width: 10%;
+    padding: 8px;
+    font-size: 15px;
+    margin-left: 2vw;
+    display: none;
+}
+/*rwd stuff. mostly just moving certain elements around so the website looks nice*/
+@media (max-width: 800px)
+{
+    html {background-position: 35% 0%;}
+    header, nav 
+    {
+        margin-left: 10vw;
+        width: 80%;
+    }
+    header {margin-top: 15vh;}
+    nav {font-size: 250%;}
+    main {font-size: 28px;}
+    .odd, .even {width: 60%;}
+    .even {margin-left: 35vw;}
+    #suletta {margin-top: 60vh;}
+    #miorine {margin-top: 160vh;}
+    #guel, #nika
+    {
+        margin-top: 230vh;
+        margin-left: 3vw;
+    }
+    #chuchu {margin-top: 300vh;}
+    #nika {margin-top: 470vh;}
+    #elan {margin-top: 580vh;}
+    #memorygame>h2 {font-size: 3em;}
+    #memorygame>p {font-size: 2em;}
+    select {font-size: 1.5em;}
+    #submitbutton {font-size: 1.5em;}
+    #memorygame 
+    {
+        height: 1200px;
+        margin-bottom: 5vh;
+    }
+    #memgamecontainer
+    {
+        width: 650px;
+        height: 650px;
+    }
+    #qrcontainer {display: none;}
+}
